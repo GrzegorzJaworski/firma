@@ -125,4 +125,27 @@ class Orders
     {
         return $this->description;
     }
+
+    /**
+     * Set owner
+     *
+     * @param \CrmBundle\Entity\User $owner
+     * @return Orders
+     */
+    public function setOwner(\CrmBundle\Entity\User $owner = null)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return \CrmBundle\Entity\User 
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
 }

@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="col-lg-6">
+    <div class="col-lg-6 form-group">
         <h1>Animal creation</h1>
 
         {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input class="btn btn-primary" type="submit" value="Create" />
         {{ form_end(form) }}
 
         <ul>

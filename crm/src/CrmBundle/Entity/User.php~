@@ -28,11 +28,17 @@ class User extends BaseUser {
      * @ORM\OneToMany(targetEntity="Orders", mappedBy="owner")
      */
     private $orders;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Visits", mappedBy="employee")
+     */
+    private $visits;
 
     public function __construct() {
         parent::__construct();
         $this->animals = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->visits = new ArrayCollection();
     }
 
 
@@ -100,5 +106,38 @@ class User extends BaseUser {
     public function getOrders()
     {
         return $this->orders;
+    }
+
+    /**
+     * Add visits
+     *
+     * @param \CrmBundle\Entity\Visits $visits
+     * @return User
+     */
+    public function addVisit(\CrmBundle\Entity\Visits $visits)
+    {
+        $this->visits[] = $visits;
+
+        return $this;
+    }
+
+    /**
+     * Remove visits
+     *
+     * @param \CrmBundle\Entity\Visits $visits
+     */
+    public function removeVisit(\CrmBundle\Entity\Visits $visits)
+    {
+        $this->visits->removeElement($visits);
+    }
+
+    /**
+     * Get visits
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getVisits()
+    {
+        return $this->visits;
     }
 }

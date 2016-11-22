@@ -1,6 +1,8 @@
 <?php
 
 namespace CrmBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,6 +42,14 @@ class Animals
      */
     private $owner;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Visits", mappedBy="animals")
+     */
+    private $visits;
+    
+    public function __construct() {
+        $this->visits = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -118,5 +128,38 @@ class Animals
     public function getOwner()
     {
         return $this->owner;
+    }
+
+    /**
+     * Add visits
+     *
+     * @param \CrmBundle\Entity\Visits $visits
+     * @return Animals
+     */
+    public function addVisit(\CrmBundle\Entity\Visits $visits)
+    {
+        $this->visits[] = $visits;
+
+        return $this;
+    }
+
+    /**
+     * Remove visits
+     *
+     * @param \CrmBundle\Entity\Visits $visits
+     */
+    public function removeVisit(\CrmBundle\Entity\Visits $visits)
+    {
+        $this->visits->removeElement($visits);
+    }
+
+    /**
+     * Get visits
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getVisits()
+    {
+        return $this->visits;
     }
 }
