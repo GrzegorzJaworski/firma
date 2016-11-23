@@ -5,6 +5,8 @@ namespace CrmBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity
@@ -38,6 +40,7 @@ class User extends BaseUser {
      * @ORM\OneToMany(targetEntity="Movies", mappedBy="employee")
      */
     private $movie;
+    
 
     public function __construct() {
         parent::__construct();
@@ -153,7 +156,7 @@ class User extends BaseUser {
      * @param \CrmBundle\Entity\Movie $movie
      * @return User
      */
-    public function addMovie(\CrmBundle\Entity\Movie $movie)
+    public function addMovie(\CrmBundle\Entity\Movies $movie)
     {
         $this->movie[] = $movie;
 
@@ -165,7 +168,7 @@ class User extends BaseUser {
      *
      * @param \CrmBundle\Entity\Movie $movie
      */
-    public function removeMovie(\CrmBundle\Entity\Movie $movie)
+    public function removeMovie(\CrmBundle\Entity\Movies $movie)
     {
         $this->movie->removeElement($movie);
     }
@@ -178,5 +181,28 @@ class User extends BaseUser {
     public function getMovie()
     {
         return $this->movie;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

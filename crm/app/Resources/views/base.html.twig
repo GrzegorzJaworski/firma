@@ -267,7 +267,7 @@
                         <ul class="nav" id="side-menu">
 
                             <li>
-                                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a href="{{ path('index') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-paw fa-fw"></i> Zwierzęta<span class="fa arrow"></span></a>
@@ -313,6 +313,18 @@
                                     </li>
                                     <li>
                                         <a href="{{ path('movies_new') }}">Dodaj nowy</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-youtube paw fa-fw"></i>Użytkownicy<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="{{ path('user_index') }}">Pokaż wszystkie</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('user_new') }}">Dodaj nowy</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
