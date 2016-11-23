@@ -100,4 +100,50 @@ class Visits
     {
         return $this->dataEnd;
     }
+
+    /**
+     * Set animals
+     *
+     * @param \CrmBundle\Entity\Animals $animals
+     * @return Visits
+     */
+    public function setAnimals(\CrmBundle\Entity\Animals $animals = null)
+    {
+        $this->animals = $animals;
+
+        return $this;
+    }
+
+    /**
+     * Get animals
+     *
+     * @return \CrmBundle\Entity\Animals 
+     */
+    public function getAnimals()
+    {
+        return $this->animals;
+    }
+
+    /**
+     * Set employee
+     *
+     * @param \CrmBundle\Entity\User $employee
+     * @return Visits
+     */
+    public function setEmployee(\CrmBundle\Entity\User $employee = null)
+    {
+        $this->employee = $employee;
+
+        return $this;
+    }
+
+    /**
+     * Get employee
+     *
+     * @return \CrmBundle\Entity\User 
+     */
+    public function getEmployee()
+    {
+        return $this->employee;
+    }
 }

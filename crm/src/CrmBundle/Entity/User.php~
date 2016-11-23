@@ -33,12 +33,18 @@ class User extends BaseUser {
      * @ORM\OneToMany(targetEntity="Visits", mappedBy="employee")
      */
     private $visits;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Movies", mappedBy="employee")
+     */
+    private $movie;
 
     public function __construct() {
         parent::__construct();
         $this->animals = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->visits = new ArrayCollection();
+        $this->movie = new ArrayCollection();
     }
 
 
@@ -139,5 +145,38 @@ class User extends BaseUser {
     public function getVisits()
     {
         return $this->visits;
+    }
+
+    /**
+     * Add movie
+     *
+     * @param \CrmBundle\Entity\Movie $movie
+     * @return User
+     */
+    public function addMovie(\CrmBundle\Entity\Movie $movie)
+    {
+        $this->movie[] = $movie;
+
+        return $this;
+    }
+
+    /**
+     * Remove movie
+     *
+     * @param \CrmBundle\Entity\Movie $movie
+     */
+    public function removeMovie(\CrmBundle\Entity\Movie $movie)
+    {
+        $this->movie->removeElement($movie);
+    }
+
+    /**
+     * Get movie
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMovie()
+    {
+        return $this->movie;
     }
 }

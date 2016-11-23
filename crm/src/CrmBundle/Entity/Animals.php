@@ -47,8 +47,14 @@ class Animals
      */
     private $visits;
     
+    /**
+     * @ORM\OneToMany(targetEntity="Movies", mappedBy="animal")
+     */
+    private $movie;
+    
     public function __construct() {
         $this->visits = new ArrayCollection();
+        $this->movie = new ArrayCollection();
     }
 
     /**
@@ -161,5 +167,38 @@ class Animals
     public function getVisits()
     {
         return $this->visits;
+    }
+
+    /**
+     * Add movie
+     *
+     * @param \CrmBundle\Entity\Movies $movie
+     * @return Animals
+     */
+    public function addMovie(\CrmBundle\Entity\Movies $movie)
+    {
+        $this->movie[] = $movie;
+
+        return $this;
+    }
+
+    /**
+     * Remove movie
+     *
+     * @param \CrmBundle\Entity\Movies $movie
+     */
+    public function removeMovie(\CrmBundle\Entity\Movies $movie)
+    {
+        $this->movie->removeElement($movie);
+    }
+
+    /**
+     * Get movie
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMovie()
+    {
+        return $this->movie;
     }
 }
