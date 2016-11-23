@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Movies list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Link</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for movie in movies %}
+            <tr>
+                <td><a href="{{ path('movies_show', { 'id': movie.id }) }}">{{ movie.id }}</a></td>
+                <td>{{ movie.link }}</td>
+                <td>{% if movie.date %}{{ movie.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('movies_show', { 'id': movie.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('movies_edit', { 'id': movie.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('movies_new') }}">Create a new movie</a>
+        </li>
+    </ul>
+{% endblock %}
