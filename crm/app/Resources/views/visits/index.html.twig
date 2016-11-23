@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Visits list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datastart</th>
+                <th>Dataend</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for visit in visits %}
+            <tr>
+                <td><a href="{{ path('visits_show', { 'id': visit.id }) }}">{{ visit.id }}</a></td>
+                <td>{% if visit.dataStart %}{{ visit.dataStart|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if visit.dataEnd %}{{ visit.dataEnd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('visits_show', { 'id': visit.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('visits_edit', { 'id': visit.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('visits_new') }}">Create a new visit</a>
+        </li>
+    </ul>
+{% endblock %}
