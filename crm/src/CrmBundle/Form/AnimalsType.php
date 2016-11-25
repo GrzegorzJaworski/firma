@@ -13,7 +13,9 @@ class AnimalsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('description')->add('owner')        ;
+        $builder->add('name', null, ['label'=>'Imię'])
+                ->add('description', null, ['label'=>'Opis'])
+                ->add('owner', null, ['label'=>'Właściciel'])        ;
     }
     
     /**

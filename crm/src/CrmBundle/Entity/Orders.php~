@@ -36,13 +36,6 @@ class Orders
     private $date;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text")
-     */
-    private $description;
-
-    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="orders")
      */
     private $owner;
@@ -101,29 +94,6 @@ class Orders
     public function getDate()
     {
         return $this->date;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Orders
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**

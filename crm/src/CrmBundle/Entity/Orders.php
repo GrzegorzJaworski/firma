@@ -36,13 +36,6 @@ class Orders
     private $date;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text")
-     */
-    private $description;
-
-    /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="orders")
      */
     private $owner;
@@ -104,29 +97,6 @@ class Orders
     }
 
     /**
-     * Set description
-     *
-     * @param string $description
-     * @return Orders
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
      * Set owner
      *
      * @param \CrmBundle\Entity\User $owner
@@ -147,5 +117,9 @@ class Orders
     public function getOwner()
     {
         return $this->owner;
+    }
+    
+    public function __toString() {
+        return $this->date;
     }
 }

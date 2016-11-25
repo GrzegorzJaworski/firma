@@ -5,29 +5,29 @@ namespace CrmBundle\Controller;
 use CrmBundle\Entity\Movies;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Movie controller.
  *
  * @Route("movies")
  */
-class MoviesController extends Controller
-{
+class MoviesController extends Controller {
+
     /**
      * Lists all movie entities.
      *
      * @Route("/", name="movies_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $movies = $em->getRepository('CrmBundle:Movies')->findAll();
 
         return $this->render('movies/index.html.twig', array(
-            'movies' => $movies,
+                    'movies' => $movies,
         ));
     }
 
@@ -37,8 +37,7 @@ class MoviesController extends Controller
      * @Route("/new", name="movies_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $movie = new Movies();
         $form = $this->createForm('CrmBundle\Form\MoviesType', $movie);
         $form->handleRequest($request);
@@ -48,12 +47,12 @@ class MoviesController extends Controller
             $em->persist($movie);
             $em->flush($movie);
 
-            return $this->redirectToRoute('movies_show', array('id' => $movie->getId()));
+            return $this->redirectToRoute('movies_index');
         }
 
         return $this->render('movies/new.html.twig', array(
-            'movie' => $movie,
-            'form' => $form->createView(),
+                    'movie' => $movie,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -63,13 +62,12 @@ class MoviesController extends Controller
      * @Route("/{id}", name="movies_show")
      * @Method("GET")
      */
-    public function showAction(Movies $movie)
-    {
+    public function showAction(Movies $movie) {
         $deleteForm = $this->createDeleteForm($movie);
 
         return $this->render('movies/show.html.twig', array(
-            'movie' => $movie,
-            'delete_form' => $deleteForm->createView(),
+                    'movie' => $movie,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -79,8 +77,7 @@ class MoviesController extends Controller
      * @Route("/{id}/edit", name="movies_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Movies $movie)
-    {
+    public function editAction(Request $request, Movies $movie) {
         $deleteForm = $this->createDeleteForm($movie);
         $editForm = $this->createForm('CrmBundle\Form\MoviesType', $movie);
         $editForm->handleRequest($request);
@@ -88,32 +85,27 @@ class MoviesController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('movies_edit', array('id' => $movie->getId()));
+            return $this->redirectToRoute('movies_index');
         }
 
         return $this->render('movies/edit.html.twig', array(
-            'movie' => $movie,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'movie' => $movie,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
      * Deletes a movie entity.
      *
-     * @Route("/{id}", name="movies_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="movies_delete")
+     * 
      */
-    public function deleteAction(Request $request, Movies $movie)
-    {
-        $form = $this->createDeleteForm($movie);
-        $form->handleRequest($request);
+    public function deleteAction(Request $request, Movies $movie) {
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($movie);
-            $em->flush($movie);
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($movie);
+        $em->flush($movie);
 
         return $this->redirectToRoute('movies_index');
     }
@@ -125,12 +117,12 @@ class MoviesController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Movies $movie)
-    {
+    private function createDeleteForm(Movies $movie) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('movies_delete', array('id' => $movie->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('movies_delete', array('id' => $movie->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }

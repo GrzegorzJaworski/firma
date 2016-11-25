@@ -1,40 +1,51 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Animal</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ animal.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ animal.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ animal.description }}</td>
-            </tr>
-            <tr>
-                <th>Owner</th>
-                <td>{{ animal.owner }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <br>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="text-center">{{ animal.name }} </h3> <p class="text-right"><a href="{{ path('animals_edit', { 'id': animal.id }) }}"> <button type="button" class="btn btn-outline btn-info btn-xs">Edytuj</button></a></p>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#owner" data-toggle="tab">Właściciel</a>
+                    </li>
+                    <li><a href="#description" data-toggle="tab">Opis</a>
+                    </li>
+                    <li><a href="#movies" data-toggle="tab">Filmy</a>
+                    </li>
+                </ul>
 
-    <ul>
-        <li>
-            <a href="{{ path('animals_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('animals_edit', { 'id': animal.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="owner">
+                        <h3><a href="{{ path('user_show', { 'id': animal.owner.id }) }}">{{ animal.owner}}</a></h3>
+                        <h4>Email:</h4>
+                        <p>{{ animal.owner.email}}</p>
+                        <h4>Adres:</h4>
+                        <p>{{ animal.owner.address}}</p>
+                        <h4>Telefon:</h4>
+                        <p>{{ animal.owner.phone}}</p>
+                        <h4>Telefon alarmowy:</h4>
+                        <p>{{ animal.owner.alarmPhone}}</p>
+                    </div>
+                    <div class="tab-pane fade" id="description">
+                        <p>{{ animal.description }}</p>
+                    </div>
+                    <div class="tab-pane fade" id="movies">
+                        {% for movie in animal.movie %} 
+                            <li>{{ movie.date|date('Y-m-d') }} {{ movie.link }}</li>
+                            {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
 {% endblock %}

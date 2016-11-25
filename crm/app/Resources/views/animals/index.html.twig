@@ -1,43 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Animals list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Owner</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for animal in animals %}
-            <tr>
-                <td><a href="{{ path('animals_show', { 'id': animal.id }) }}">{{ animal.id }}</a></td>
-                <td>{{ animal.name }}</td>
-                <td>{{ animal.description }}</td>
-                <td>{{ animal.owner }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('animals_show', { 'id': animal.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('animals_edit', { 'id': animal.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('animals_new') }}">Create a new animal</a>
-        </li>
-    </ul>
+    <br>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong> Zwierzęta </strong>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Imię</th>
+                                <th>Właściciel</th>
+                                <th>Opis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for animal in animals %}
+                                <tr>
+                                    <td><a href="{{ path('animals_show', { 'id': animal.id }) }}">{{ animal.name }}</a></td>
+                                    <td>{{ animal.owner }}</td>
+                                    <td>{{ animal.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
 {% endblock %}

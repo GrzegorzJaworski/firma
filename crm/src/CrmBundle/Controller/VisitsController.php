@@ -5,29 +5,30 @@ namespace CrmBundle\Controller;
 use CrmBundle\Entity\Visits;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Visit controller.
  *
  * @Route("visits")
  */
-class VisitsController extends Controller
-{
+class VisitsController extends Controller {
+
     /**
      * Lists all visit entities.
      *
      * @Route("/", name="visits_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $visits = $em->getRepository('CrmBundle:Visits')->findAll();
-
+// dump($visits);
+//            die;
         return $this->render('visits/index.html.twig', array(
-            'visits' => $visits,
+                    'visits' => $visits,
         ));
     }
 
@@ -37,8 +38,7 @@ class VisitsController extends Controller
      * @Route("/new", name="visits_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $visit = new Visits();
         $form = $this->createForm('CrmBundle\Form\VisitsType', $visit);
         $form->handleRequest($request);
@@ -48,12 +48,12 @@ class VisitsController extends Controller
             $em->persist($visit);
             $em->flush($visit);
 
-            return $this->redirectToRoute('visits_show', array('id' => $visit->getId()));
+            return $this->redirectToRoute('visits_index');
         }
 
         return $this->render('visits/new.html.twig', array(
-            'visit' => $visit,
-            'form' => $form->createView(),
+                    'visit' => $visit,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -63,13 +63,12 @@ class VisitsController extends Controller
      * @Route("/{id}", name="visits_show")
      * @Method("GET")
      */
-    public function showAction(Visits $visit)
-    {
+    public function showAction(Visits $visit) {
         $deleteForm = $this->createDeleteForm($visit);
 
         return $this->render('visits/show.html.twig', array(
-            'visit' => $visit,
-            'delete_form' => $deleteForm->createView(),
+                    'visit' => $visit,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -79,8 +78,7 @@ class VisitsController extends Controller
      * @Route("/{id}/edit", name="visits_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Visits $visit)
-    {
+    public function editAction(Request $request, Visits $visit) {
         $deleteForm = $this->createDeleteForm($visit);
         $editForm = $this->createForm('CrmBundle\Form\VisitsType', $visit);
         $editForm->handleRequest($request);
@@ -88,32 +86,27 @@ class VisitsController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('visits_edit', array('id' => $visit->getId()));
+            return $this->redirectToRoute('visits_index');
         }
 
         return $this->render('visits/edit.html.twig', array(
-            'visit' => $visit,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'visit' => $visit,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
      * Deletes a visit entity.
      *
-     * @Route("/{id}", name="visits_delete")
-     * @Method("DELETE")
+        * @Route("/{id}/delete", name="visits_delete")
+     * 
      */
-    public function deleteAction(Request $request, Visits $visit)
-    {
-        $form = $this->createDeleteForm($visit);
-        $form->handleRequest($request);
+    public function deleteAction(Request $request, Visits $visit) {
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($visit);
-            $em->flush($visit);
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($visit);
+        $em->flush($visit);
 
         return $this->redirectToRoute('visits_index');
     }
@@ -125,12 +118,12 @@ class VisitsController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Visits $visit)
-    {
+    private function createDeleteForm(Visits $visit) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('visits_delete', array('id' => $visit->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('visits_delete', array('id' => $visit->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }

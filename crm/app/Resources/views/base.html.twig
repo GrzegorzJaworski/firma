@@ -13,7 +13,7 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="{{ asset('bundles/framework/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Amatic+SC" />
         <!-- MetisMenu CSS -->
         <link href="{{ asset('bundles/framework/vendor/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
 
@@ -318,7 +318,7 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-youtube paw fa-fw"></i>Użytkownicy<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-user paw fa-fw"></i>Użytkownicy<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
                                         <a href="{{ path('user_index') }}">Pokaż wszystkie</a>
@@ -338,9 +338,7 @@
 
             <div id="page-wrapper">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <img src="{{ asset('bundles/framework/images/logo-onz.png') }}" />
-                    </div>
+                 
                     <!-- /.col-lg-12 -->
 
                 {% block body %}{% endblock %}

@@ -1,41 +1,40 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Movies list</h1>
+    <br>
+    <div class="col-lg-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Filmy</strong>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Link</th>
-                <th>Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for movie in movies %}
-            <tr>
-                <td><a href="{{ path('movies_show', { 'id': movie.id }) }}">{{ movie.id }}</a></td>
-                <td>{{ movie.link }}</td>
-                <td>{% if movie.date %}{{ movie.date|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('movies_show', { 'id': movie.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('movies_edit', { 'id': movie.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Link</th>
+                                <th>Data</th>
+                                <th>Zwierzątko</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for movie in movies %}
+                                <tr>
+                                    <td>{{ movie.link }}</td>
+                                    <td>{{ movie.date|date('Y-m-d H:i:s') }}</td>
+                                    <td>{{ movie.animal.name }}</td>
+                                    <td>{{ movie.employee.username }}</td>
+                                    <td>
 
-    <ul>
-        <li>
-            <a href="{{ path('movies_new') }}">Create a new movie</a>
-        </li>
-    </ul>
-{% endblock %}
+                                        <a href="{{ path('movies_edit', { 'id': movie.id }) }}"> <button type="button" class="btn btn-outline btn-info btn-xs">Edytuj</button></a>
+                                        <a href="{{ path('movies_delete', { 'id': movie.id }) }}"> <button type="button" class="btn btn-outline btn-danger btn-xs" onClick="if (confirm('Czy napewno chcesz usunąć film ?') == false)
+                                                    return false;">Usuń</button></a>
+
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                {% endblock %}

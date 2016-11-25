@@ -14,9 +14,8 @@ class DashboardController extends Controller
      */
     public function halloAction()
     {
-        return $this->render('CrmBundle:Dashboard:hallo.html.twig', array(
-            // ...
-        ));
+        $user = $this->getUser();
+        return $this->render('dashboard/hallo.html.twig', array('user' => $user));
     }
 
 }

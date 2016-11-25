@@ -201,4 +201,8 @@ class Animals
     {
         return $this->movie;
     }
+    
+    public function __toString() {
+        return $this->name;
+    }
 }

@@ -88,7 +88,7 @@ class AnimalsController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('animals_edit', array('id' => $animal->getId()));
+            return $this->redirectToRoute('animals_show', array('id' => $animal->getId()));
         }
 
         return $this->render('animals/edit.html.twig', array(

@@ -41,6 +41,34 @@ class User extends BaseUser {
      */
     private $movie;
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="text")
+     */
+    private $address;
+    
+    /**
+     * @var intt
+     *
+     * @ORM\Column(name="phone", type="integer")
+     */
+    private $phone;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="alarmPhone", type="integer")
+     */
+    private $alarmPhone;
+    
 
     public function __construct() {
         parent::__construct();
@@ -204,5 +232,100 @@ class User extends BaseUser {
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return User
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+
+    
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     * @return User
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string 
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param integer $phone
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return integer 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set alarmPhone
+     *
+     * @param integer $alarmPhone
+     * @return User
+     */
+    public function setAlarmPhone($alarmPhone)
+    {
+        $this->alarmPhone = $alarmPhone;
+
+        return $this;
+    }
+
+    /**
+     * Get alarmPhone
+     *
+     * @return integer 
+     */
+    public function getAlarmPhone()
+    {
+        return $this->alarmPhone;
     }
 }

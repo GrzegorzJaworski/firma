@@ -1,43 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Orders list</h1>
+    <br>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <strong>Zamówienia</strong>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Price</th>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for order in orders %}
-            <tr>
-                <td><a href="{{ path('orders_show', { 'id': order.id }) }}">{{ order.id }}</a></td>
-                <td>{{ order.price }}</td>
-                <td>{% if order.date %}{{ order.date|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ order.description }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('orders_show', { 'id': order.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('orders_edit', { 'id': order.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Klient</th>
+                                <th>Data</th>
+                                <th>Cena</th>
+                                <th>Akcje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                                <tr>
+                                    <td>{{ order.owner.username }}</td>
+                                    <td>{{ order.date|date('Y-m-d H:i') }}</td>
+                                    <td>{{ order.price }}</td>
+                                    <td>
 
-    <ul>
-        <li>
-            <a href="{{ path('orders_new') }}">Create a new order</a>
-        </li>
-    </ul>
-{% endblock %}
+                                        <a href="{{ path('orders_edit', { 'id': order.id }) }}"> <button type="button" class="btn btn-outline btn-info btn-xs">Edytuj</button></a>
+                                        <a href="{{ path('orders_delete', { 'id': order.id }) }}"> <button type="button" class="btn btn-outline btn-danger btn-xs" onClick="if(confirm('Czy napewno chcesz usunąć zamówienie ?')==false) return false;">Usuń</button></a>
+                                       
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                {% endblock %}
