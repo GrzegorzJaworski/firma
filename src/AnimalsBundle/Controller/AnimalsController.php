@@ -39,7 +39,7 @@ class AnimalsController extends Controller
      */
     public function newAction(Request $request)
     {
-        $animal = new Animal();
+        $animal = new Animals();
         $form = $this->createForm('AnimalsBundle\Form\AnimalsType', $animal);
         $form->handleRequest($request);
 

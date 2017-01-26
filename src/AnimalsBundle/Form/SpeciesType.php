@@ -6,14 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AnimalsType extends AbstractType
+class SpeciesType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('breed')->add('owner')->add('description')        ;
+        $builder->add('species')        ;
     }
     
     /**
@@ -22,7 +22,7 @@ class AnimalsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AnimalsBundle\Entity\Animals'
+            'data_class' => 'AnimalsBundle\Entity\Species'
         ));
     }
 
@@ -31,7 +31,7 @@ class AnimalsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'animalsbundle_animals';
+        return 'animalsbundle_species';
     }
 
 

@@ -105,6 +105,272 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // worktime_default_index
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'worktime_default_index');
+            }
+
+            return array (  '_controller' => 'WorkTimeBundle\\Controller\\DefaultController::indexAction',  '_route' => 'worktime_default_index',);
+        }
+
+        if (0 === strpos($pathinfo, '/worktime')) {
+            // worktime_index
+            if (rtrim($pathinfo, '/') === '/worktime') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_worktime_index;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'worktime_index');
+                }
+
+                return array (  '_controller' => 'WorkTimeBundle\\Controller\\WorkTimeController::indexAction',  '_route' => 'worktime_index',);
+            }
+            not_worktime_index:
+
+            // worktime_new
+            if ($pathinfo === '/worktime/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_worktime_new;
+                }
+
+                return array (  '_controller' => 'WorkTimeBundle\\Controller\\WorkTimeController::newAction',  '_route' => 'worktime_new',);
+            }
+            not_worktime_new:
+
+            // worktime_show
+            if (preg_match('#^/worktime/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_worktime_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'worktime_show')), array (  '_controller' => 'WorkTimeBundle\\Controller\\WorkTimeController::showAction',));
+            }
+            not_worktime_show:
+
+            // worktime_edit
+            if (preg_match('#^/worktime/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_worktime_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'worktime_edit')), array (  '_controller' => 'WorkTimeBundle\\Controller\\WorkTimeController::editAction',));
+            }
+            not_worktime_edit:
+
+            // worktime_delete
+            if (preg_match('#^/worktime/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_worktime_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'worktime_delete')), array (  '_controller' => 'WorkTimeBundle\\Controller\\WorkTimeController::deleteAction',));
+            }
+            not_worktime_delete:
+
+        }
+
+        if (0 === strpos($pathinfo, '/animals')) {
+            // animals_index
+            if (rtrim($pathinfo, '/') === '/animals') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_animals_index;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'animals_index');
+                }
+
+                return array (  '_controller' => 'AnimalsBundle\\Controller\\AnimalsController::indexAction',  '_route' => 'animals_index',);
+            }
+            not_animals_index:
+
+            // animals_new
+            if ($pathinfo === '/animals/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_animals_new;
+                }
+
+                return array (  '_controller' => 'AnimalsBundle\\Controller\\AnimalsController::newAction',  '_route' => 'animals_new',);
+            }
+            not_animals_new:
+
+            // animals_show
+            if (preg_match('#^/animals/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_animals_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'animals_show')), array (  '_controller' => 'AnimalsBundle\\Controller\\AnimalsController::showAction',));
+            }
+            not_animals_show:
+
+            // animals_edit
+            if (preg_match('#^/animals/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_animals_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'animals_edit')), array (  '_controller' => 'AnimalsBundle\\Controller\\AnimalsController::editAction',));
+            }
+            not_animals_edit:
+
+            // animals_delete
+            if (preg_match('#^/animals/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_animals_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'animals_delete')), array (  '_controller' => 'AnimalsBundle\\Controller\\AnimalsController::deleteAction',));
+            }
+            not_animals_delete:
+
+        }
+
+        if (0 === strpos($pathinfo, '/breed')) {
+            // breed_index
+            if (rtrim($pathinfo, '/') === '/breed') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_breed_index;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'breed_index');
+                }
+
+                return array (  '_controller' => 'AnimalsBundle\\Controller\\BreedController::indexAction',  '_route' => 'breed_index',);
+            }
+            not_breed_index:
+
+            // breed_new
+            if ($pathinfo === '/breed/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_breed_new;
+                }
+
+                return array (  '_controller' => 'AnimalsBundle\\Controller\\BreedController::newAction',  '_route' => 'breed_new',);
+            }
+            not_breed_new:
+
+            // breed_show
+            if (preg_match('#^/breed/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_breed_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'breed_show')), array (  '_controller' => 'AnimalsBundle\\Controller\\BreedController::showAction',));
+            }
+            not_breed_show:
+
+            // breed_edit
+            if (preg_match('#^/breed/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_breed_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'breed_edit')), array (  '_controller' => 'AnimalsBundle\\Controller\\BreedController::editAction',));
+            }
+            not_breed_edit:
+
+            // breed_delete
+            if (preg_match('#^/breed/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_breed_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'breed_delete')), array (  '_controller' => 'AnimalsBundle\\Controller\\BreedController::deleteAction',));
+            }
+            not_breed_delete:
+
+        }
+
+        // animals_default_index
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'animals_default_index');
+            }
+
+            return array (  '_controller' => 'AnimalsBundle\\Controller\\DefaultController::indexAction',  '_route' => 'animals_default_index',);
+        }
+
+        if (0 === strpos($pathinfo, '/species')) {
+            // species_index
+            if (rtrim($pathinfo, '/') === '/species') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_species_index;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'species_index');
+                }
+
+                return array (  '_controller' => 'AnimalsBundle\\Controller\\SpeciesController::indexAction',  '_route' => 'species_index',);
+            }
+            not_species_index:
+
+            // species_new
+            if ($pathinfo === '/species/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_species_new;
+                }
+
+                return array (  '_controller' => 'AnimalsBundle\\Controller\\SpeciesController::newAction',  '_route' => 'species_new',);
+            }
+            not_species_new:
+
+            // species_show
+            if (preg_match('#^/species/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_species_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'species_show')), array (  '_controller' => 'AnimalsBundle\\Controller\\SpeciesController::showAction',));
+            }
+            not_species_show:
+
+            // species_edit
+            if (preg_match('#^/species/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_species_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'species_edit')), array (  '_controller' => 'AnimalsBundle\\Controller\\SpeciesController::editAction',));
+            }
+            not_species_edit:
+
+            // species_delete
+            if (preg_match('#^/species/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_species_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'species_delete')), array (  '_controller' => 'AnimalsBundle\\Controller\\SpeciesController::deleteAction',));
+            }
+            not_species_delete:
+
+        }
+
         // user_default_index
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {

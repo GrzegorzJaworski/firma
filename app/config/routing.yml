@@ -1,3 +1,7 @@
+animals_species:
+    resource: "@AnimalsBundle/Controller/SpeciesController.php"
+    type:     annotation
+
 work_time_work_time:
     resource: "@WorkTimeBundle/Controller/WorkTimeController.php"
     type:     annotation
