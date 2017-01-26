@@ -13,7 +13,7 @@ class BreedType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('breed')        ;
+        $builder->add('breed')->add('species')        ;
     }
     
     /**
