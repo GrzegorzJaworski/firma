@@ -1,0 +1,29 @@
+work_time_work_time:
+    resource: "@WorkTimeBundle/Controller/WorkTimeController.php"
+    type:     annotation
+
+animals_animals:
+    resource: "@AnimalsBundle/Controller/AnimalsController.php"
+    type:     annotation
+
+animals_breed:
+    resource: "@AnimalsBundle/Controller/BreedController.php"
+    type:     annotation
+
+work_time:
+    resource: "@WorkTimeBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+animals:
+    resource: "@AnimalsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
