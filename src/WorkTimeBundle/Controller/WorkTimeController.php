@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Worktime controller.
+ * WorkTime controller.
  *
  * @Route("worktime")
  */
@@ -24,7 +24,7 @@ class WorkTimeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $workTimes = $em->getRepository('WorkTime.php')->findAll();
+        $workTimes = $em->getRepository('WorkTimeBundle:WorkTime')->findAll();
 
         return $this->render('worktime/index.html.twig', array(
             'workTimes' => $workTimes,

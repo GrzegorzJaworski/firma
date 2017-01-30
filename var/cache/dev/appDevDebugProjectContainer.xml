@@ -526,7 +526,7 @@
                 <tag name="cache.pool" clearer="cache.default_clearer"/>
                 <argument>BbSMT+r5RN</argument>
                 <argument>0</argument>
-                <argument>OqpCyoR9Vsghrhk373ov1x</argument>
+                <argument>mlH5lc35R5Xc4Xqf8-x56M</argument>
                 <argument>/var/www/html/onzdg/var/cache/dev/pools</argument>
                 <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                 <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -694,7 +694,7 @@
           <tag name="monolog.logger" channel="cache"/>
           <argument>ELkZpn7xHs</argument>
           <argument>null</argument>
-          <argument>OqpCyoR9Vsghrhk373ov1x</argument>
+          <argument>mlH5lc35R5Xc4Xqf8-x56M</argument>
           <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
           <factory class="Symfony\Component\PropertyAccess\PropertyAccessor" method="createCache"/>
         </service>
@@ -715,7 +715,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>qg+WV-b-xR</argument>
       <argument>0</argument>
-      <argument>OqpCyoR9Vsghrhk373ov1x</argument>
+      <argument>mlH5lc35R5Xc4Xqf8-x56M</argument>
       <argument>/var/www/html/onzdg/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -725,7 +725,7 @@
       <tag name="cache.pool" clearer="cache.default_clearer"/>
       <argument>z9bFpKAZLD</argument>
       <argument>0</argument>
-      <argument>OqpCyoR9Vsghrhk373ov1x</argument>
+      <argument>mlH5lc35R5Xc4Xqf8-x56M</argument>
       <argument>/var/www/html/onzdg/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -2075,7 +2075,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider" public="false">
-            <argument type="service" id="fos_user.user_provider.username"/>
+            <argument type="service" id="fos_user.user_provider.username_email"/>
             <argument type="service" id="security.user_checker"/>
             <argument>main</argument>
             <argument type="service" id="security.encoder_factory"/>
@@ -2084,7 +2084,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>588a492dcf3eb6.28364106</argument>
+            <argument>588faec837ff17.00116800</argument>
           </service>
         </argument>
       </argument>
@@ -2263,7 +2263,7 @@
           <service class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
             <argument type="service" id="security.token_storage"/>
             <argument type="collection">
-              <argument type="service" id="fos_user.user_provider.username"/>
+              <argument type="service" id="fos_user.user_provider.username_email"/>
             </argument>
             <argument>main</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -2378,7 +2378,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>588a492dcf3eb6.28364106</argument>
+            <argument>588faec837ff17.00116800</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2477,7 +2477,7 @@
           <argument>security.request_matcher.a64d671f18e5575531d76c1d1154fdc4476cb8a79c02ed7a3469178c6d7b96b5ed4e60db</argument>
           <argument>true</argument>
           <argument>false</argument>
-          <argument>fos_user.user_provider.username</argument>
+          <argument>fos_user.user_provider.username_email</argument>
           <argument>main</argument>
           <argument>security.authentication.form_entry_point.main</argument>
           <argument>null</argument>
@@ -3082,7 +3082,7 @@
       <argument type="service" id="request_stack"/>
       <argument>null</argument>
     </service>
-    <service id="fos_user.user_provider.username" class="FOS\UserBundle\Security\UserProvider" public="false">
+    <service id="fos_user.user_provider.username_email" class="FOS\UserBundle\Security\EmailUserProvider" public="false">
       <argument type="service" id="fos_user.user_manager"/>
     </service>
     <service id="fos_user.util.user_manipulator" class="FOS\UserBundle\Util\UserManipulator">
@@ -3631,6 +3631,10 @@
       <call method="addPath">
         <argument>/var/www/html/onzdg/vendor/doctrine/doctrine-bundle/Resources/views</argument>
         <argument>Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/html/onzdg/app/Resources/FOSUserBundle/views</argument>
+        <argument>FOSUser</argument>
       </call>
       <call method="addPath">
         <argument>/var/www/html/onzdg/vendor/friendsofsymfony/user-bundle/Resources/views</argument>
