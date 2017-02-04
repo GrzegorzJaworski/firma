@@ -14,15 +14,15 @@ animals_breed:
     resource: "@AnimalsBundle/Controller/BreedController.php"
     type:     annotation
 
-work_time:
-    resource: "@WorkTimeBundle/Controller/"
-    type:     annotation
-    prefix:   /
+#work_time:
+#    resource: "@WorkTimeBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
 
-animals:
-    resource: "@AnimalsBundle/Controller/"
-    type:     annotation
-    prefix:   /
+#animals:
+#    resource: "@AnimalsBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
 
 user:
     resource: "@UserBundle/Controller/"
