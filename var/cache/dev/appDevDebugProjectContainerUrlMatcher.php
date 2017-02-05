@@ -362,6 +362,16 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'UserBundle\\Controller\\DefaultController::indexAction',  '_route' => 'user_default_index',);
         }
 
+        // users_list
+        if ($pathinfo === '/index') {
+            return array (  '_controller' => 'UserBundle\\Controller\\UsersController::indexAction',  '_route' => 'users_list',);
+        }
+
+        // user_users_deactivate
+        if ($pathinfo === '/deactivate') {
+            return array (  '_controller' => 'UserBundle\\Controller\\UsersController::deactivateAction',  '_route' => 'user_users_deactivate',);
+        }
+
         if (0 === strpos($pathinfo, '/log')) {
             if (0 === strpos($pathinfo, '/login')) {
                 // fos_user_security_login
