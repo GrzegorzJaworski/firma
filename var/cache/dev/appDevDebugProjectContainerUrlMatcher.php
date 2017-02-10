@@ -367,6 +367,28 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'UserBundle\\Controller\\UsersController::indexAction',  '_route' => 'users_list',);
         }
 
+        // users_show
+        if (preg_match('#^/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_users_show;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'users_show')), array (  '_controller' => 'UserBundle\\Controller\\UsersController::showAction',));
+        }
+        not_users_show:
+
+        // users_edit
+        if (preg_match('#^/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                goto not_users_edit;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'users_edit')), array (  '_controller' => 'UserBundle\\Controller\\UsersController::editAction',));
+        }
+        not_users_edit:
+
         // user_users_deactivate
         if ($pathinfo === '/deactivate') {
             return array (  '_controller' => 'UserBundle\\Controller\\UsersController::deactivateAction',  '_route' => 'user_users_deactivate',);

@@ -37,6 +37,29 @@ class User extends BaseUser
      */
     private $description;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="text", nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="phone", type="integer", nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="alarm_phone", type="integer", nullable=true)
+     */
+    private $alarmPhone;
+
+
+
     public function __construct()
     {
         parent::__construct();
@@ -135,5 +158,77 @@ class User extends BaseUser
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return User
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param integer $phone
+     *
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return integer
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set alarmPhone
+     *
+     * @param integer $alarmPhone
+     *
+     * @return User
+     */
+    public function setAlarmPhone($alarmPhone)
+    {
+        $this->alarmPhone = $alarmPhone;
+
+        return $this;
+    }
+
+    /**
+     * Get alarmPhone
+     *
+     * @return integer
+     */
+    public function getAlarmPhone()
+    {
+        return $this->alarmPhone;
     }
 }

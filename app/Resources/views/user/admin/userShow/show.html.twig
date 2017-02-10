@@ -1,0 +1,145 @@
+{% extends 'user/admin/index.html.twig' %}
+
+{% block stylesheets %}
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+{% endblock %}
+
+{% block test %}
+
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+              <div class="pull-left">{{ user.username }}</div><div class="pull-right"><a href="{{ path('users_edit', { 'id': user.id }) }}" type="button" class="btn btn-warning btn-xs">Edytuj</a></div>
+                </div>
+                </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#profile" data-toggle="tab">Dane</a>
+                    </li>
+                    <li><a href="#description" data-toggle="tab">Opis</a>
+                    </li>
+                    <li><a href="#animals" data-toggle="tab">Zwierzęta</a>
+                    </li>
+
+                    {#<li><a href="#settings" data-toggle="tab">Settings</a>#}
+                    {#</li>#}
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="profile">
+                        <dl class="dl-horizontal">
+                            <dt>Imię i nazwisko</dt><dd>{{ user.username }}</dd>
+                            <dt>Adress</dt><dd>{{ user.address }}</dd>
+                            <dt>Telefon</dt><dd>{{ user.phone }}</dd>
+                            <dt>Telefon alarmowy</dt><dd>{{ user.alarmPhone }}</dd>
+                            <dt>Mail</dt><dd>{{ user.email }}</dd>
+                            <dt>Typ</dt><dd>{{ user.roles[0] }}</dd>
+                        </dl>
+                    </div>
+                    <div class="tab-pane fade" id="animals">
+                        {% for animal in user.animals %}
+                        <dl class="dl-horizontal">
+                            <dt>Imię</dt><dd><a href="{{ path('animals_show', { 'id': user.animal.id }) }}">{{ user.animals.name }}</a></dd>
+                            <dt>Gatunek</dt><dd>{{ user.animal.species }}</dd>
+                            <dt>Rasa</dt><dd>{{ user.animal.breed }}</dd>
+                        </dl>
+                        {% endfor %}
+                    </div>
+                    <div class="tab-pane fade" id="description">
+                        {{ user.description }}
+                    </div>
+                    {#<div class="tab-pane fade" id="settings">#}
+                        {#<h4>Settings Tab</h4>#}
+                        {#<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut#}
+                            {#labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco#}
+                            {#laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in#}
+                            {#voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat#}
+                            {#cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>#}
+                    {#</div>#}
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-6 -->
+
+
+
+
+    {#<h1>User</h1>#}
+
+    {#<table>#}
+        {#<tbody>#}
+        {#<tr>#}
+            {#<th>Id</th>#}
+            {#<td>{{ user.id }}</td>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<th>Name</th>#}
+            {#<td>{{ user.username }}</td>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<th>Email</th>#}
+            {#<td>{{ user.email }}</td>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<th>Typ</th>#}
+            {#<td>{{ user.roles[0] }}</td>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<th>Opis</th>#}
+            {#<td>{{ user.description }}</td>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<th>Zwierzęta</th>#}
+            {#<td>#}
+                {#<ul>#}
+                    {#{% for animal in user.animals %}#}
+                        {#<li>#}
+                            {#animal#}
+                        {#</li>#}
+                    {#{% endfor %}#}
+                {#</ul>#}
+            {#</td>#}
+        {#</tr>#}
+        {#</tbody>#}
+    {#</table>#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('users_list') }}">Back to the list</a>#}
+        {#</li>#}
+        {#<li>#}
+        {#<a href="{{ path('animals_edit', { 'id': animal.id }) }}">Edit</a>#}
+        {#</li>#}
+        {#<li>#}
+        {#{{ form_start(delete_form) }}#}
+        {#<input type="submit" value="Delete">#}
+        {#{{ form_end(delete_form) }}#}
+        {#</li>#}
+    {#</ul>#}
+{% endblock %}

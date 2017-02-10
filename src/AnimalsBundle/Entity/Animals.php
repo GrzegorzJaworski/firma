@@ -100,6 +100,8 @@ class Animals
      *
      * @return Animals
      */
+
+
     public function setSpecies($species)
     {
         $this->species = $species;
