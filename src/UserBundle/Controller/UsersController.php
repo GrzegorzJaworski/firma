@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use UserBundle\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class UsersController extends Controller
 {
@@ -44,6 +46,7 @@ class UsersController extends Controller
      *
      * @Route("/{id}/edit", name="users_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function editAction(Request $request, User $user)
     {
@@ -59,17 +62,23 @@ class UsersController extends Controller
 
         return $this->render('user/admin/userEdit/edit.html.twig', array(
             'user' => $user,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
 //            'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * @Route("/deactivate")
+     * @Route("/{id}/test", name="users_test")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
-    public function deactivateAction()
+    public function deactivateAction(User $user)
     {
-        return $this->render('UserBundle:Users:deactivate.html.twig', array(
+        $user->setEnabled(false);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush($user);
+
+        return $this->render('user/admin/usersList/usersList.html.twig', array(
             // ...
         ));
     }

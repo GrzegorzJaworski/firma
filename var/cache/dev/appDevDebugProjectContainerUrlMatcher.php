@@ -389,9 +389,9 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_users_edit:
 
-        // user_users_deactivate
-        if ($pathinfo === '/deactivate') {
-            return array (  '_controller' => 'UserBundle\\Controller\\UsersController::deactivateAction',  '_route' => 'user_users_deactivate',);
+        // users_test
+        if (preg_match('#^/(?P<id>[^/]++)/test$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'users_test')), array (  '_controller' => 'UserBundle\\Controller\\UsersController::deactivateAction',));
         }
 
         if (0 === strpos($pathinfo, '/log')) {
