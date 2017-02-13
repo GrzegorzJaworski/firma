@@ -30,7 +30,7 @@ class Animals
 
     /**
      * Many Animals have One Breed.
-     * @ORM\ManyToOne(targetEntity="AnimalsBundle\Entity\Breed")
+     * @ORM\ManyToOne(targetEntity="Breed", inversedBy="animals", fetch="EAGER")
      */
     private $breed;
 
@@ -93,31 +93,6 @@ class Animals
         return $this->name;
     }
 
-    /**
-     * Set species
-     *
-     * @param string $species
-     *
-     * @return Animals
-     */
-
-
-    public function setSpecies($species)
-    {
-        $this->species = $species;
-
-        return $this;
-    }
-
-    /**
-     * Get species
-     *
-     * @return string
-     */
-    public function getSpecies()
-    {
-        return $this->species;
-    }
 
     /**
      * Set breed

@@ -3,7 +3,7 @@
 namespace AnimalsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Breed
  *
@@ -29,10 +29,21 @@ class Breed
     private $breed;
 
     /**
-     * Many Breed have One Species.
-     * @ORM\ManyToOne(targetEntity="AnimalsBundle\Entity\Species")
+     * Many Breed have One Specie.
+     * @ORM\ManyToOne(targetEntity="Species", inversedBy="breeds", fetch="EAGER")
      */
     private $species;
+
+    // ...
+    /**
+     * One Breed has Many Animals.
+     * @ORM\OneToMany(targetEntity="Animals", mappedBy="breed")
+     */
+    private $animals;
+
+    public function __construct() {
+        $this->animals = new ArrayCollection();
+    }
 
 
     /**
@@ -91,5 +102,39 @@ class Breed
     public function getSpecies()
     {
         return $this->species;
+    }
+
+    /**
+     * Add animal
+     *
+     * @param \AnimalsBundle\Entity\Animals $animal
+     *
+     * @return Breed
+     */
+    public function addAnimal(\AnimalsBundle\Entity\Animals $animal)
+    {
+        $this->animals[] = $animal;
+
+        return $this;
+    }
+
+    /**
+     * Remove animal
+     *
+     * @param \AnimalsBundle\Entity\Animals $animal
+     */
+    public function removeAnimal(\AnimalsBundle\Entity\Animals $animal)
+    {
+        $this->animals->removeElement($animal);
+    }
+
+    /**
+     * Get animals
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnimals()
+    {
+        return $this->animals;
     }
 }

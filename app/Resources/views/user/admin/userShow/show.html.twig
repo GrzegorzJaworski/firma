@@ -38,7 +38,7 @@
                     <div class="pull-right">
                         <a href="{{ path('users_edit', { 'id': user.id }) }}" type="button"
                                                class="btn btn-warning btn-xs">Edytuj</a>
-                        <a href="{{ path('users_test', { 'id': user.id }) }}" type="button"
+                        <a href="{{ path('users_disable', { 'id': user.id }) }}" type="button"
                            class="btn btn-danger btn-xs">Usuń</a>
                     </div>
                 </div>
@@ -81,12 +81,12 @@
                             <dl class="dl-horizontal">
                                 <dt>Imię</dt>
                                 <dd>
-                                    <a href="{{ path('animals_show', { 'id': user.animal.id }) }}">{{ user.animals.name }}</a>
+                                    <a href="{{ path('animals_show', { 'id': animal.id }) }}">{{ animal.name }}</a>
                                 </dd>
                                 <dt>Gatunek</dt>
-                                <dd>{{ user.animal.species }}</dd>
+                                <dd>{{ animal.breed.species.species }}</dd>
                                 <dt>Rasa</dt>
-                                <dd>{{ user.animal.breed }}</dd>
+                                <dd>{{ animal.breed.breed }}</dd>
                             </dl>
                         {% endfor %}
                     </div>

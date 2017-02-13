@@ -71,11 +71,11 @@ class User extends BaseUser
     /**
      * Add animal
      *
-     * @param \UserBundle\Entity\Animals $animal
+     * @param \AnimalsBundle\Entity\Animals $animal
      *
      * @return User
      */
-    public function addAnimal(\UserBundle\Entity\Animals $animal)
+    public function addAnimal(\AnimalsBundle\Entity\Animals $animal)
     {
         $this->animals[] = $animal;
 
@@ -85,9 +85,9 @@ class User extends BaseUser
     /**
      * Remove animal
      *
-     * @param \UserBundle\Entity\Animals $animal
+     * @param \AnimalsBundle\Entity\Animals $animal
      */
-    public function removeAnimal(\UserBundle\Entity\Animals $animal)
+    public function removeAnimal(\AnimalsBundle\Entity\Animals $animal)
     {
         $this->animals->removeElement($animal);
     }
@@ -105,11 +105,11 @@ class User extends BaseUser
     /**
      * Add workTime
      *
-     * @param \UserBundle\Entity\WorkTime $workTime
+     * @param \WorkTimeBundle\Entity\WorkTime $workTime
      *
      * @return User
      */
-    public function addWorkTime(\UserBundle\Entity\WorkTime $workTime)
+    public function addWorkTime(\WorkTimeBundle\Entity\WorkTime $workTime)
     {
         $this->workTimes[] = $workTime;
 
@@ -119,9 +119,9 @@ class User extends BaseUser
     /**
      * Remove workTime
      *
-     * @param \UserBundle\Entity\WorkTime $workTime
+     * @param \WorkTimeBundle\Entity\WorkTime $workTime
      */
-    public function removeWorkTime(\UserBundle\Entity\WorkTime $workTime)
+    public function removeWorkTime(\WorkTimeBundle\Entity\WorkTime $workTime)
     {
         $this->workTimes->removeElement($workTime);
     }

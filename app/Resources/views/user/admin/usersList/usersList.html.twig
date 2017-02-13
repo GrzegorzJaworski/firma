@@ -56,16 +56,15 @@
                                 <td>{{ user.id }}</td>
                                 <td><a href={{ path('users_show', { 'id': user.id }) }}>{{ user.username }}</a></td>
                                 <td>{{ user.email }}</td>
-                                <td>dodac telefon</td>
+                                <td>{{ user.phone }}</td>
                                 <td>
-                                    <ul>
+                                    <ul class="list-unstyled">
                                         {% for animal in user.animals %}
                                         <li>
                                             animal
                                         </li>
                                         {% endfor %}
                                     </ul>
-                                    {#{{ user.animals }}#}
                                 </td>
                                 <td>{{ user.roles[0] }}</td>
                             </tr>

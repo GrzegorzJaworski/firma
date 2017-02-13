@@ -353,18 +353,23 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // user_default_index
+        // dashboard
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'user_default_index');
+                return $this->redirect($pathinfo.'/', 'dashboard');
             }
 
-            return array (  '_controller' => 'UserBundle\\Controller\\DefaultController::indexAction',  '_route' => 'user_default_index',);
+            return array (  '_controller' => 'UserBundle\\Controller\\DefaultController::indexAction',  '_route' => 'dashboard',);
         }
 
-        // users_list
-        if ($pathinfo === '/index') {
-            return array (  '_controller' => 'UserBundle\\Controller\\UsersController::indexAction',  '_route' => 'users_list',);
+        // petsitters_list
+        if ($pathinfo === '/petsitters_index') {
+            return array (  '_controller' => 'UserBundle\\Controller\\UsersController::petsittersIndexAction',  '_route' => 'petsitters_list',);
+        }
+
+        // customers_list
+        if ($pathinfo === '/customers_index') {
+            return array (  '_controller' => 'UserBundle\\Controller\\UsersController::customersIndexAction',  '_route' => 'customers_list',);
         }
 
         // users_show
@@ -389,9 +394,9 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_users_edit:
 
-        // users_test
-        if (preg_match('#^/(?P<id>[^/]++)/test$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'users_test')), array (  '_controller' => 'UserBundle\\Controller\\UsersController::deactivateAction',));
+        // users_disable
+        if (preg_match('#^/(?P<id>[^/]++)/disable$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'users_disable')), array (  '_controller' => 'UserBundle\\Controller\\UsersController::deactivateAction',));
         }
 
         if (0 === strpos($pathinfo, '/log')) {

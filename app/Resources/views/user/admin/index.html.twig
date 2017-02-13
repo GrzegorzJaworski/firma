@@ -264,13 +264,16 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ path("dashboard") }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Użytkownicy<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Użytkownicy<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ path("users_list") }}">Lista</a>
+                                    <a href="{{ path("petsitters_list") }}">Lista petsitterów</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path("customers_list") }}">Lista klientów</a>
                                 </li>
                                 <li>
                                     <a href="{{ path("fos_user_registration_register") }}">Dodaj</a>
@@ -279,7 +282,16 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Zwierzęta<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ path("animals_index") }}">Lista</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path("animals_new") }}">Dodaj zwierzę</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
                         <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
@@ -366,7 +378,6 @@
                         {% block test %}
 <img class="img-responsive" src="{{ asset('img/The-Secret-Life-of-Pets-2016.jpg') }}">
                         {% endblock %}
-                        {{ dump(app.user) }}
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>

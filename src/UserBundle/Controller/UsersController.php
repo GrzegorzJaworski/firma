@@ -13,17 +13,40 @@ use Symfony\Component\HttpFoundation\Request;
 class UsersController extends Controller
 {
     /**
-     * @Route("/index", name="users_list")
+     * @Route("/petsitters_index", name="petsitters_list")
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
-    public function indexAction()
+    public function petsittersIndexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $query = $this->getDoctrine()->getEntityManager()
+            ->createQuery(
+                'SELECT u FROM UserBundle:User u WHERE u.roles LIKE :role AND u.enabled like :enable')
+            ->setParameter('role', '%"PETSITTER"%')
+            ->setParameter('enable', true);
 
-        $users = $em->getRepository('UserBundle:User')->findAll();
+        $petsitters = $query->getResult();
 
         return $this->render('user/admin/usersList/usersList.html.twig', array(
-            'users' => $users,
+            'users' => $petsitters,
+        ));
+    }
+
+    /**
+     * @Route("/customers_index", name="customers_list")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
+     */
+    public function customersIndexAction()
+    {
+        $query = $this->getDoctrine()->getEntityManager()
+            ->createQuery(
+                'SELECT u FROM UserBundle:User u WHERE u.roles LIKE :role AND u.enabled like :enable')
+            ->setParameter('role', '%"CUSTOMER"%')
+            ->setParameter('enable', true);
+
+        $petsitters = $query->getResult();
+
+        return $this->render('user/admin/usersList/usersList.html.twig', array(
+            'users' => $petsitters,
         ));
     }
 
@@ -68,7 +91,7 @@ class UsersController extends Controller
     }
 
     /**
-     * @Route("/{id}/test", name="users_test")
+     * @Route("/{id}/disable", name="users_disable")
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function deactivateAction(User $user)
@@ -78,9 +101,7 @@ class UsersController extends Controller
         $em->persist($user);
         $em->flush($user);
 
-        return $this->render('user/admin/usersList/usersList.html.twig', array(
-            // ...
-        ));
+        return $this->redirectToRoute('users_list');
     }
 
 
