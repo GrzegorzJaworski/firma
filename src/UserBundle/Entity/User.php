@@ -29,7 +29,7 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="WorkTimeBundle\Entity\WorkTime", mappedBy="petsitter")
      */
     private $workTimes;
-    
+
     /**
      * @var string
      *
@@ -90,6 +90,16 @@ class User extends BaseUser
     public function removeAnimal(\AnimalsBundle\Entity\Animals $animal)
     {
         $this->animals->removeElement($animal);
+    }
+
+    /**
+     * Get Id
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**

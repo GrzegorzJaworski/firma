@@ -10,6 +10,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use FOS\UserBundle\Util\LegacyFormHelper;
+
 
 
 
@@ -23,16 +25,24 @@ class UserType extends AbstractType
         $builder
             ->add('username', TextType::class, array('label' => 'Imię i Nazwisko'))
             ->add('email', EmailType::class, array('label' => 'Mail'))
+            ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
+                'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
+                'options' => array('translation_domain' => 'FOSUserBundle'),
+                'first_options' => array('label' => 'Hasło'),
+                'second_options' => array('label' => 'Powtórz hasło'),
+                'invalid_message' => 'fos_user.password.mismatch',
+            ))
             ->add('address', TextareaType::class, array ('label' => 'Adres'))
             ->add('phone', TextType::class, array('label' => 'Telefon'))
             ->add('alarmPhone', TextType::class, array('label' => 'Telefon alarmowy'))
-            ->add('animals', EntityType::class, array(
-                'class' => 'AnimalsBundle:Animals',
-                'choice_label' => 'name',
-                'multiple' => true,
-                'label' => 'Zwierzęta',
-                'attr'  => array('class' => 'checkbox')
-                ))
+//            ->add('animals', TextType::class, array('label' => 'Zwierzęta'))
+//            ->add('Breed', EntityType::class, array(
+//                'class' => 'AnimalsBundle:Breed',
+//                'choice_label' => 'breed',
+//                'multiple' => false,
+//                'label' => 'Rasa',
+//            ))
+
             ->add('description')        ;
     }
     

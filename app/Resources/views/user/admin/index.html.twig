@@ -267,13 +267,22 @@
                             <a href="{{ path("dashboard") }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Użytkownicy<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Klijenci<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ path("customers_list") }}">Lista klientów</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path("customer_new") }}">Dodaj</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Petsitterzy<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{{ path("petsitters_list") }}">Lista petsitterów</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path("customers_list") }}">Lista klientów</a>
                                 </li>
                                 <li>
                                     <a href="{{ path("fos_user_registration_register") }}">Dodaj</a>

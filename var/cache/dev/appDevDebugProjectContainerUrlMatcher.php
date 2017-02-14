@@ -372,6 +372,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'UserBundle\\Controller\\UsersController::customersIndexAction',  '_route' => 'customers_list',);
         }
 
+        // customer_new
+        if ($pathinfo === '/new_customer') {
+            if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                goto not_customer_new;
+            }
+
+            return array (  '_controller' => 'UserBundle\\Controller\\UsersController::newCustomerAction',  '_route' => 'customer_new',);
+        }
+        not_customer_new:
+
         // users_show
         if (preg_match('#^/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {

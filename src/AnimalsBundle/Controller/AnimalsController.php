@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Entity\User;
 
 /**
  * Animal controller.
@@ -43,8 +44,16 @@ class AnimalsController extends Controller
         $animal = new Animals();
         $form = $this->createForm('AnimalsBundle\Form\AnimalsType', $animal);
         $form->handleRequest($request);
+        $session = $request->getSession();
+        $newCustomer = $session->get('newCustomer');
+        $session->set('newCustomer', null);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($newCustomer != null) {
+                $owner = $this->getDoctrine()->getRepository('UserBundle:User')->findOneById($newCustomer);
+                $animal->setOwner($owner);
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($animal);
             $em->flush($animal);
@@ -55,6 +64,7 @@ class AnimalsController extends Controller
         return $this->render('animals/new.html.twig', array(
             'animal' => $animal,
             'form' => $form->createView(),
+            'owner' => $newCustomer,
         ));
     }
 

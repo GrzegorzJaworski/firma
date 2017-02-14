@@ -51,6 +51,39 @@ class UsersController extends Controller
     }
 
     /**
+     * Creates a new customer entity.
+     *
+     * @Route("/new_customer", name="customer_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newCustomerAction(Request $request)
+    {
+        $customer = new User();
+        $form = $this->createForm('UserBundle\Form\UserType', $customer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $roles[] = 'CUSTOMER';
+            $customer->setRoles($roles)->setEnabled(true);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($customer);
+            $em->flush($customer);
+//            $url = '/new/customer/' . $customer->getId();
+            $session = $request->getSession();
+            $session->set('newCustomer', $customer->getId());
+
+            return $this->redirectToRoute('animals_new', array());
+        }
+
+        return $this->render('user/admin/newCustomer/new_customer.html.twig', array(
+            'user' => $customer,
+            'form' => $form->createView(),
+        ));
+    }
+
+
+
+    /**
      * Finds and displays a user entity.
      *
      * @Route("/{id}", name="users_show")

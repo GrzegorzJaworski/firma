@@ -24,10 +24,14 @@ animals_breed:
 #    type:     annotation
 #    prefix:   /
 
-user:
-    resource: "@UserBundle/Controller/"
+user_default:
+    resource: "@UserBundle/Controller/DefaultController.php"
     type:     annotation
     prefix:   /
+
+user_users:
+    resource: "@UserBundle/Controller/UsersController.php"
+    type:     annotation
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
