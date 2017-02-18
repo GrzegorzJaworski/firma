@@ -32,6 +32,35 @@ class UsersController extends Controller
     }
 
     /**
+     * Creates a new petsitter entity.
+     *
+     * @Route("/new_petsitter", name="petsitter_new")
+     * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
+     */
+    public function newPetsitterAction(Request $request)
+    {
+        $customer = new User();
+        $form = $this->createForm('UserBundle\Form\UserType', $customer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $roles[] = 'PETSITTER';
+            $customer->setRoles($roles)->setEnabled(true);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($customer);
+            $em->flush($customer);
+
+            return $this->redirectToRoute('petsitters_list', array());
+        }
+
+        return $this->render('user/admin/newPetsitter/new_petsitter.html.twig', array(
+            'user' => $customer,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
      * @Route("/customers_index", name="customers_list")
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
@@ -55,6 +84,7 @@ class UsersController extends Controller
      *
      * @Route("/new_customer", name="customer_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function newCustomerAction(Request $request)
     {
@@ -68,7 +98,6 @@ class UsersController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($customer);
             $em->flush($customer);
-//            $url = '/new/customer/' . $customer->getId();
             $session = $request->getSession();
             $session->set('newCustomer', $customer->getId());
 
@@ -134,7 +163,7 @@ class UsersController extends Controller
         $em->persist($user);
         $em->flush($user);
 
-        return $this->redirectToRoute('users_list');
+        return $this->redirectToRoute('dashboard');
     }
 
 

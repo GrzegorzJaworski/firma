@@ -4,6 +4,7 @@ namespace AnimalsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Animals
  *
@@ -37,6 +38,7 @@ class Animals
     /**
      * Many Animals have One Owner.
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="animals")
+     * @Assert\NotNull()
      */
     private $owner;
 

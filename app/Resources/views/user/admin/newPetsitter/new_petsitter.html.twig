@@ -2,43 +2,42 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block test %}
-    <style>
-        .user-row {
-            margin-bottom: 14px;
-        }
+<style>
+    .user-row {
+        margin-bottom: 14px;
+    }
 
-        .user-row:last-child {
-            margin-bottom: 0;
-        }
+    .user-row:last-child {
+        margin-bottom: 0;
+    }
 
-        .dropdown-user {
-            margin: 13px 0;
-            padding: 5px;
-            height: 100%;
-        }
+    .dropdown-user {
+        margin: 13px 0;
+        padding: 5px;
+        height: 100%;
+    }
 
-        .dropdown-user:hover {
-            cursor: pointer;
-        }
+    .dropdown-user:hover {
+        cursor: pointer;
+    }
 
-        .table-user-information > tbody > tr {
-            border-top: 1px solid rgb(221, 221, 221);
-        }
+    .table-user-information > tbody > tr {
+        border-top: 1px solid rgb(221, 221, 221);
+    }
 
-        .table-user-information > tbody > tr:first-child {
-            border-top: 0;
-        }
+    .table-user-information > tbody > tr:first-child {
+        border-top: 0;
+    }
 
 
-        .table-user-information > tbody > tr > td {
-            border-top: 0;
-        }
-        .toppad
-        {margin-top:20px;
-        }
+    .table-user-information > tbody > tr > td {
+        border-top: 0;
+    }
+    .toppad
+    {margin-top:20px;
+    }
 
-    </style>
-
+</style>
     {#<div class="container">#}
         <div class="row">
             {{ form_start(form) }}
@@ -46,8 +45,8 @@
 
 
                 <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Podaj dane nowego klienta</h3>
+                    <div class="panel-heading text-center">
+                        <h3 class="panel-title">Podaj dane nowego opiekuna</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -62,8 +61,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer">
-                        <input class="btn btn-primary" type="submit" value="Dodaj zwierzaka" />
+                    <div class="panel-footer text-center">
+                        <input class="btn btn-primary" type="submit" value="Dodaj petsittera" />
                     </div>
 
                 </div>

@@ -2,19 +2,85 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block test %}
-    <h1>Dodaj zwierzaka</h1>
+    {% include 'breed/new.html.twig' %}
+<style>
+    .user-row {
+        margin-bottom: 14px;
+    }
 
-    {{ form_start(form, {'attr': {'class': 'col-lg-6'}}) }}
-        {{ form_row(form.name) }}
-        {{ form_row(form.breed) }}
-    {#{{ dump(app.session) }}#}
-        {% if owner != null %}
-            {{ form_widget(form.owner, {'attr': {'class': 'hide'}}) }}
-            {% else %}
-                {{ form_row(form.owner) }}
-        {% endif %}
-        {{ form_row(form.description) }}
-        <input class="btn btn-primary" type="submit" value="Dodaj" />
-    {{ form_end(form) }}
+    .user-row:last-child {
+        margin-bottom: 0;
+    }
+
+    .dropdown-user {
+        margin: 13px 0;
+        padding: 5px;
+        height: 100%;
+    }
+
+    .dropdown-user:hover {
+        cursor: pointer;
+    }
+
+    .table-user-information > tbody > tr {
+        border-top: 1px solid rgb(221, 221, 221);
+    }
+
+    .table-user-information > tbody > tr:first-child {
+        border-top: 0;
+    }
+
+
+    .table-user-information > tbody > tr > td {
+        border-top: 0;
+    }
+    .toppad
+    {margin-top:20px;
+    }
+
+</style>
+    {#<div class="container">#}
+    <div class="row">
+        {{ form_start(form) }}
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">Podaj dane zwierzaka</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center">
+                            <img alt="User Pic" src="http://s.babyonline.pl/i/-GALLERY_MAI2-13340.jpg" class="img-circle img-responsive">
+                        </div>
+
+                        <div class=" col-md-9 col-lg-9 ">
+
+                            {{ form_row(form.name) }}
+                            {{ form_row(form.breed) }}
+                            {% if owner != null %}
+                                {{ form_widget(form.owner, {'attr': {'class': 'hide'}}) }}
+                            {% else %}
+                                {{ form_row(form.owner) }}
+                            {% endif %}
+                            {{ form_row(form.description) }}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <input class="btn btn-primary" type="submit" value="Dodaj" />
+                    <span class="pull-right">
+                        <button class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+                        Dodaj rasę
+                        </button>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
 
 {% endblock %}

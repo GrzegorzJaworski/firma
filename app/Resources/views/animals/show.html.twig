@@ -1,52 +1,93 @@
-{% extends 'base.html.twig' %}
+{% extends 'user/admin/index.html.twig' %}
 
-{% block body %}
-    <h1>Animal</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ animal.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ animal.name }}</td>
-            </tr>
-            {#<tr>#}
-                {#<th>Species</th>#}
-                {#<td>{{ animal.breed.species }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Breed</th>#}
-                {#<td>{{ animal.breed }}</td>#}
-            {#</tr>#}
-            <tr>
-                <th>Owner</th>
-                <td>{{ animal.owner }}</td>
-            </tr>
-            {#<tr>#}
-                {#<th>Petsitter</th>#}
-                {#<td>{{ animal.petsitter }}</td>#}
-            {#</tr>#}
-            <tr>
-                <th>Description</th>
-                <td>{{ animal.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+{% block test %}
+    <style>
+        .user-row {
+            margin-bottom: 14px;
+        }
 
-    <ul>
-        <li>
-            <a href="{{ path('animals_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('animals_edit', { 'id': animal.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        .user-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .dropdown-user {
+            margin: 13px 0;
+            padding: 5px;
+            height: 100%;
+        }
+
+        .dropdown-user:hover {
+            cursor: pointer;
+        }
+
+        .table-user-information > tbody > tr {
+            border-top: 1px solid rgb(221, 221, 221);
+        }
+
+        .table-user-information > tbody > tr:first-child {
+            border-top: 0;
+        }
+
+
+        .table-user-information > tbody > tr > td {
+            border-top: 0;
+        }
+        .toppad
+        {margin-top:20px;
+        }
+
+    </style>
+
+    {#<div class="container">#}
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ animal.name }}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://s.babyonline.pl/i/-GALLERY_MAI2-13340.jpg" class="img-circle img-responsive"> </div>
+
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                <tr>
+                                    <td>Właściciel:</td>
+                                    <td>{{ animal.owner }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Gatunek:</td>
+                                    <td>{{ animal.breed.species.species }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Rasa:</td>
+                                    <td>{{ animal.breed.breed }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Opis</td>
+                                    <td>{{ animal.description }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                    <span class="pull-right">
+                            <a href="{{ path('animals_edit', {'id': animal.id}) }}" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="{{ path('animals_delete', {'id': animal.id}) }}" data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                        </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {#</div>#}
+
 {% endblock %}

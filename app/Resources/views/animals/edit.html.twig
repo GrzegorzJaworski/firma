@@ -1,21 +1,76 @@
-{% extends 'base.html.twig' %}
+{% extends 'user/admin/index.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 
-{% block body %}
-    <h1>Animal edit</h1>
+{% block test %}
+    <style>
+        .user-row {
+            margin-bottom: 14px;
+        }
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        .user-row:last-child {
+            margin-bottom: 0;
+        }
 
-    <ul>
-        <li>
-            <a href="{{ path('animals_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        .dropdown-user {
+            margin: 13px 0;
+            padding: 5px;
+            height: 100%;
+        }
+
+        .dropdown-user:hover {
+            cursor: pointer;
+        }
+
+        .table-user-information > tbody > tr {
+            border-top: 1px solid rgb(221, 221, 221);
+        }
+
+        .table-user-information > tbody > tr:first-child {
+            border-top: 0;
+        }
+
+
+        .table-user-information > tbody > tr > td {
+            border-top: 0;
+        }
+        .toppad
+        {margin-top:20px;
+        }
+
+    </style>
+    {#<div class="container">#}
+    <div class="row">
+        {{ form_start(form) }}
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">Edytuj</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center">
+                            <img alt="User Pic" src="http://s.babyonline.pl/i/-GALLERY_MAI2-13340.jpg" class="img-circle img-responsive">
+                        </div>
+
+                        <div class=" col-md-9 col-lg-9 ">
+
+                            {{ form_row(form.name) }}
+                            {{ form_row(form.breed) }}
+                            {{ form_row(form.owner) }}
+                            {{ form_row(form.description) }}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <input class="btn btn-primary" type="submit" value="Zapisz" />
+                </div>
+
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
 {% endblock %}

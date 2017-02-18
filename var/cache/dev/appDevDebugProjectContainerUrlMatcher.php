@@ -268,7 +268,7 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             not_animals_show:
 
             // animals_edit
-            if (preg_match('#^/animals/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/animals/edit') && preg_match('#^/animals/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
                 if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
                     $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
                     goto not_animals_edit;
@@ -366,6 +366,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         if ($pathinfo === '/petsitters_index') {
             return array (  '_controller' => 'UserBundle\\Controller\\UsersController::petsittersIndexAction',  '_route' => 'petsitters_list',);
         }
+
+        // petsitter_new
+        if ($pathinfo === '/new_petsitter') {
+            if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                goto not_petsitter_new;
+            }
+
+            return array (  '_controller' => 'UserBundle\\Controller\\UsersController::newPetsitterAction',  '_route' => 'petsitter_new',);
+        }
+        not_petsitter_new:
 
         // customers_list
         if ($pathinfo === '/customers_index') {

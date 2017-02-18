@@ -87,7 +87,7 @@ class AnimalsController extends Controller
     /**
      * Displays a form to edit an existing animal entity.
      *
-     * @Route("/{id}/edit", name="animals_edit")
+     * @Route("/edit/{id}", name="animals_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Animals $animal)
@@ -104,8 +104,8 @@ class AnimalsController extends Controller
 
         return $this->render('animals/edit.html.twig', array(
             'animal' => $animal,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form' => $editForm->createView(),
+//            'delete_form' => $deleteForm->createView(),
         ));
     }
 

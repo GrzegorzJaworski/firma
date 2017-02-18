@@ -34,7 +34,7 @@ class UserType extends AbstractType
             ))
             ->add('address', TextareaType::class, array ('label' => 'Adres'))
             ->add('phone', TextType::class, array('label' => 'Telefon'))
-            ->add('alarmPhone', TextType::class, array('label' => 'Telefon alarmowy'))
+            ->add('alarmPhone', null, array('label' => 'Telefon alarmowy'))
 //            ->add('animals', TextType::class, array('label' => 'Zwierzęta'))
 //            ->add('Breed', EntityType::class, array(
 //                'class' => 'AnimalsBundle:Breed',
